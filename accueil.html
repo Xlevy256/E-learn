@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page d'Accueil</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Bienvenue sur notre site d'apprentissage</h1>
+    </header>
+    <main>
+        <section class="intro">
+            <h2>Découvrez nos cours pour toutes les classes</h2>
+            <p>Accédez à des ressources éducatives organisées par niveau et par matière.</p>
+        </section>
+        <div class="container">
+            <div class="class-section" id="class1">
+                <h2>Classes Primaires</h2>
+                <div class="course-list">
+                    <div class="course" onclick="toggleCourses('class1', 'course1')">
+                        <h3>Sixième</h3>
+                        <ul id="course1" class="course-items">
+                     <li><a href="mathématique.html">Cours 1: Mathématiques</a></li>
+ <li><a href="français.html">Cours 2: Français</a></li>
+                            <li><a href="sciences.html">Cours 3: Sciences</a></li>
+                        </ul>
+                    </div>
+                    <div class="course" onclick="toggleCourses('class1', 'course2')">
+                        <h3>Cinquième</h3>
+                        <ul id="course2" class="course-items">
+                            <li>Cours 1: Histoire</li>
+                            <li>Cours 2: Géographie</li>
+                            <li>Cours 3: Technologie</li>
+                        </ul>
+                    </div>
+                    <div class="course" onclick="toggleCourses('class1', 'course3')">
+                        <h3>Quatrième</h3>
+                        <ul id="course3" class="course-items">
+                            <li>Cours 1: Mathématiques</li>
+                            <li>Cours 2: Physique</li>
+                            <li>Cours 3: Français</li>
+                        </ul>
+                    </div>
+                    <div class="course" onclick="toggleCourses('class1', 'course4')">
+                        <h3>Troisième</h3>
+                        <ul id="course4" class="course-items">
+                            <li>Cours 1: Sciences de la Vie</li>
+                            <li>Cours 2: Histoire-Géographie</li>
+                            <li>Cours 3: Technologie</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="class-section" id="class2">
+                <h2>Classes Secondaires</h2>
+                <div class="course-list">
+                    <div class="course" onclick="toggleCourses('class2', 'course5')">
+                        <h3>Seconde</h3>
+                        <ul id="course5" class="course-items">
+                            <li>Cours 1: Mathématiques</li>
+                            <li>Cours 2: Français</li>
+                            <li>Cours 3: Histoire-Géographie</li>
+                        </ul>
+                    </div>
+                    <div class="course" onclick="toggleCourses('class2', 'course6')">
+                        <h3>Première</h3>
+                        <ul id="course6" class="course-items">
+                            <li>Cours 1: Physique-Chimie</li>
+                            <li>Cours 2: Anglais</li>
+                            <li>Cours 3: Philosophie</li>
+                        </ul>
+                    </div>
+                    <div class="course" onclick="toggleCourses('class2', 'course7')">
+                        <h3>Terminale</h3>
+                        <ul id="course7" class="course-items">
+                            <li>Cours 1: Mathématiques Spécialité</li>
+                            <li>Cours 2: Sciences de la Vie et de la Terre</li>
+                            <li>Cours 3: Économie</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="class-section" id="class3">
+                <h2>Classes Supérieures</h2>
+                <div class="course-list">
+                    <div class="course" onclick="toggleCourses('class3', 'course8')">
+                        <h3>Faculté des Sciences</h3>
+                        <ul id="course8" class="course-items">
+                            <li>Cours 1: Calcul Différentiel</li>
+                            <li>Cours 2: Mécanique Quantique</li>
+                            <li>Cours 3: Biologie Moléculaire</li>
+                        </ul>
+                    </div>
+                    <div class="course" onclick="toggleCourses('class3', 'course9')">
+                        <h3>Faculté des Langues</h3>
+                        <ul id="course9" class="course-items">
+                            <li>Cours 1: Linguistique</li>
+                            <li>Cours 2: Traduction</li>
+                            <li>Cours 3: Phonétique</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="main.js"></script>
+</body>
+</html>
