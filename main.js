@@ -57,15 +57,20 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 document.addEventListener('DOMContentLoaded', () => {
     const courseBtn = document.querySelector('.course-btn');
-    
+
+    // Animation de clic sur le bouton
     courseBtn.addEventListener('click', () => {
-        alert('Vous allez être redirigé vers le cours.');
-        // Redirection vers la page du cours
-        window.location.href = 'cours-detail.html'; 
+        courseBtn.classList.add('clicked');
+        setTimeout(() => {
+            courseBtn.classList.remove('clicked');
+            alert('Vous allez être redirigé vers le cours.');
+            window.location.href = 'physique-chimiepdf6.html';
+        }, 300);
     });
 
+    // Effets d'animation sur le bouton au survol
     courseBtn.addEventListener('mouseover', () => {
-        courseBtn.style.boxShadow = '0px 8px 15px rgba(0, 0, 0, 0.1)';
+        courseBtn.style.boxShadow = '0px 15px 20px rgba(0, 91, 187, 0.3)';
     });
 
     courseBtn.addEventListener('mouseout', () => {
