@@ -307,8 +307,14 @@ footer {
     }
 }
 
-
-
+.d-flex{
+    display: flex;
+}
+.center-content{
+    height: 100vh; /* Prendre toute la hauteur, sans ça, ça ne se centre pas au mileu de l'écran */
+    justify-content: center; /* Centrer Horizontalement  */
+    align-items: center;  /* Centrer verticalement */
+}
 
 
 
