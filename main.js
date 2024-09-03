@@ -55,3 +55,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const observer = new IntersectionObserver(observerCallback, observerOptions);
     courseCards.forEach(card => observer.observe(card));
 });
+document.addEventListener('DOMContentLoaded', () => {
+    const courseBtn = document.querySelector('.course-btn');
+    
+    courseBtn.addEventListener('click', () => {
+        alert('Vous allez être redirigé vers le cours.');
+        // Redirection vers la page du cours
+        window.location.href = 'cours-detail.html'; 
+    });
+
+    courseBtn.addEventListener('mouseover', () => {
+        courseBtn.style.boxShadow = '0px 8px 15px rgba(0, 0, 0, 0.1)';
+    });
+
+    courseBtn.addEventListener('mouseout', () => {
+        courseBtn.style.boxShadow = 'none';
+    });
+});
