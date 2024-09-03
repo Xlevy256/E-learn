@@ -21,3 +21,14 @@ document.addEventListener('DOMContentLoaded', function() {
         document.style.animationDelay = `${index * 0.2}s`;
     });
 });
+
+document.getElementById('logoutButton').addEventListener('click', function() {
+    // Masquer le bouton et montrer le loader
+    this.style.display = 'none';
+    document.getElementById('loader').style.display = 'block';
+
+    // Redirection après 3 secondes
+    setTimeout(function() {
+        window.location.href = "connexion.html"; // Remplacez "login.html" par l'URL de votre page de connexion
+    }, 3000);
+});
