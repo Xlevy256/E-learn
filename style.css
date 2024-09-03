@@ -457,3 +457,41 @@ footer {
     0% { opacity: 0; transform: translateY(-20px); }
     100% { opacity: 1; transform: translateY(0); }
 }
+
+/* Styles pour le pied de page */
+.footer {
+    background-color: #333333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    opacity: 0;
+    animation: fadeInFooter 2s ease-in-out forwards;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer p {
+    margin: 0;
+    font-size: 1em;
+    letter-spacing: 1px;
+    animation: textGlow 1.5s infinite alternate;
+}
+
+@keyframes fadeInFooter {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes textGlow {
+    from { text-shadow: 0 0 5px #ff7f50, 0 0 10px #ff7f50, 0 0 15px #ff7f50; }
+    to { text-shadow: 0 0 10px #ff7f50, 0 0 20px #ff7f50, 0 0 30px #ff7f50; }
+}

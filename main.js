@@ -32,3 +32,5 @@ document.getElementById('logoutButton').addEventListener('click', function() {
         window.location.href = "connexion.html"; // Remplacez "login.html" par l'URL de votre page de connexion
     }, 3000);
 });
+// Insérer l'année courante dans le pied de page
+document.getElementById('year').textContent = new Date().getFullYear();
