@@ -13,3 +13,11 @@ function toggleCourses(classId, courseId) {
     // Toggle visibility of the selected course items
     courseItems.style.display = isVisible ? 'none' : 'block';
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    const documents = document.querySelectorAll('.document');
+
+    documents.forEach((document, index) => {
+        document.style.animationDelay = `${index * 0.2}s`;
+    });
+});
