@@ -34,3 +34,24 @@ document.getElementById('logoutButton').addEventListener('click', function() {
 });
 // Insérer l'année courante dans le pied de page
 document.getElementById('year').textContent = new Date().getFullYear();
+document.addEventListener('DOMContentLoaded', () => {
+    const courseCards = document.querySelectorAll('.course-card');
+
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    };
+
+    const observerCallback = (entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    courseCards.forEach(card => observer.observe(card));
+});
