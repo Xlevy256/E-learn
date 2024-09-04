@@ -1,106 +1,71 @@
-function toggleCourses(classId, courseId) {
-    const courseItems = document.getElementById(courseId);
-    const isVisible = courseItems.style.display === 'block';
+document.getElementById('levelSelect').addEventListener('change', function() {
+    var selectedLevel = this.value;
+    var classSelectionContainer = document.getElementById('classSelectionContainer');
+    var courseSelectionContainer = document.getElementById('courseSelectionContainer');
+    var accessCourseBtn = document.getElementById('accessCourseBtn');
+    
+    // Réinitialiser les sélections de classes et de cours
+    classSelectionContainer.innerHTML = '';
+    courseSelectionContainer.innerHTML = '';
+    accessCourseBtn.disabled = true;
 
-    // Hide all course items in the same class section
-    const allCourseItems = document.querySelectorAll(`#${classId} .course-items`);
-    allCourseItems.forEach(item => {
-        if (item.id !== courseId) {
-            item.style.display = 'none';
-        }
-    });
+    var classes = [];
+    var courses = ["Anglais", "Français", "Mathématiques", "Physique-Chimie", "Histoire-Géographie", "SVT"];
 
-    // Toggle visibility of the selected course items
-    courseItems.style.display = isVisible ? 'none' : 'block';
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-    const documents = document.querySelectorAll('.document');
-
-    documents.forEach((document, index) => {
-        document.style.animationDelay = `${index * 0.2}s`;
-    });
-});
-
-document.getElementById('logoutButton').addEventListener('click', function() {
-    // Masquer le bouton et montrer le loader
-    this.style.display = 'none';
-    document.getElementById('loader').style.display = 'block';
-
-    // Redirection après 3 secondes
-    setTimeout(function() {
-        window.location.href = "connexion.html"; // Remplacez "login.html" par l'URL de votre page de connexion
-    }, 3000);
-});
-// Insérer l'année courante dans le pied de page
-document.getElementById('year').textContent = new Date().getFullYear();
-document.addEventListener('DOMContentLoaded', () => {
-    const courseCards = document.querySelectorAll('.course-card');
-
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1
-    };
-
-    const observerCallback = (entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
-            }
-        });
-    };
-
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
-    courseCards.forEach(card => observer.observe(card));
-});
-document.addEventListener('DOMContentLoaded', () => {
-    const courseBtn = document.querySelector('.course-btn');
-
-    // Animation de clic sur le bouton
-    courseBtn.addEventListener('click', () => {
-        courseBtn.classList.add('clicked');
-        setTimeout(() => {
-            courseBtn.classList.remove('clicked');
-            alert('Vous allez être redirigé vers le cours.');
-            window.location.href = 'physique-chimiepdf6.html';
-        }, 300);
-    });
-
-    // Effets d'animation sur le bouton au survol
-    courseBtn.addEventListener('mouseover', () => {
-        courseBtn.style.boxShadow = '0px 15px 20px rgba(0, 91, 187, 0.3)';
-    });
-
-    courseBtn.addEventListener('mouseout', () => {
-        courseBtn.style.boxShadow = 'none';
-    });
-});
-function redirectToCourse(subject) {
-    // Rediriger vers la page spécifique du cours
-    window.location.href = subject + '.html';
-}
-document.addEventListener("DOMContentLoaded", function() {
-    const footer = document.querySelector('footer');
-    const mainContent = document.querySelector('.main-content');
-
-    function checkFooterPosition() {
-        const contentHeight = mainContent.getBoundingClientRect().height;
-        const windowHeight = window.innerHeight;
-
-        if (contentHeight < windowHeight) {
-            footer.classList.add('footer-visible');
-            mainContent.style.paddingBottom = `${footer.getBoundingClientRect().height}px`;
-        } else {
-            footer.classList.remove('footer-visible');
-            mainContent.style.paddingBottom = '0';
-        }
+    // Définir les classes en fonction du niveau sélectionné
+    if (selectedLevel === 'secondary') {
+        classes = ["Sixième", "Cinquième", "Quatrième", "Troisième"];
+    } else if (selectedLevel === 'tertiary') {
+        classes = ["Seconde", "Première", "Terminale"];
+    } else if (selectedLevel === 'higher') {
+        classes = ["Facultés des Sciences"];
     }
 
-    window.addEventListener('resize', checkFooterPosition);
-    window.addEventListener('load', checkFooterPosition);
+    // Ajouter les options de classe
+    var classSelect = document.createElement('select');
+    classSelect.id = 'classSelect';
+    classSelect.innerHTML = `<option value="" disabled selected>Choisissez une classe</option>`;
+    classes.forEach(function(cl) {
+        classSelect.innerHTML += `<option value="${cl.toLowerCase().replace(/\s+/g, '')}">${cl}</option>`;
+    });
 
-    // Vérifier la position au chargement de la page
-    checkFooterPosition();
+    classSelect.addEventListener('change', function() {
+        courseSelectionContainer.innerHTML = '';
+        var selectedClass = this.value;
+
+        // Ajouter les options de cours
+        var courseSelect = document.createElement('select');
+        courseSelect.id = 'courseSelect';
+        courseSelect.innerHTML = `<option value="" disabled selected>Choisissez un cours</option>`;
+        courses.forEach(function(course) {
+            courseSelect.innerHTML += `<option value="${course.toLowerCase().replace(/\s+/g, '')}">${course}</option>`;
+        });
+
+        courseSelect.addEventListener('change', function() {
+            accessCourseBtn.disabled = false;
+        });
+
+        courseSelectionContainer.appendChild(courseSelect);
+    });
+
+    classSelectionContainer.appendChild(classSelect);
+});
+
+document.getElementById('accessCourseBtn').addEventListener('click', function() {
+    var selectedClass = document.getElementById('classSelect').value;
+    var selectedCourse = document.getElementById('courseSelect').value;
+    var url = `documents_${selectedClass}_${selectedCourse}.html`;
+
+    // Déboguer les valeurs capturées et l'URL
+    console.log('Classe sélectionnée:', selectedClass);
+    console.log('Cours sélectionné:', selectedCourse);
+    console.log('URL générée:', url);
+
+    // Ajouter un effet de fade-out
+    document.querySelector('.container').style.animation = 'fadeOut 0.5s forwards';
+
+    setTimeout(function() {
+        // Tester l'URL
+        window.location.href = url;
+    }, 500);
 });

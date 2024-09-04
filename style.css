@@ -1,100 +1,105 @@
-/* Styles globaux */
 body {
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    background-color: #f0f2f5;
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
 }
 
-/* Header */
-header {
-    background-color: #1e90ff;
-    color: white;
+.container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
     text-align: center;
-    padding: 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease-in-out;
 }
 
-/* Navigation principale */
-.main-nav {
-    background-color: #333;
-}
-
-.main-nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.main-nav ul li {
-    margin: 0;
-}
-
-.main-nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 1.2em;
-    padding: 15px;
-    display: block;
-    transition: background-color 0.3s;
-}
-
-.main-nav ul li a:hover {
-    background-color: #ff7f50;
-}
-
-/* Sections */
-.section-level {
-    padding: 20px;
-    margin: 20px 0;
-    background-color: white;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    animation: fadeInSection 1.5s ease-in-out;
-}
-
-.section-level h2 {
-    text-align: center;
-    color: #1e90ff;
-}
-
-.class-list {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.class-list li {
-    margin: 10px;
-}
-
-.class-list li a {
-    text-decoration: none;
+h1 {
+    margin-bottom: 20px;
+    font-size: 28px;
     color: #333;
-    font-size: 1.2em;
-    background-color: #f4f4f4;
-    padding: 10px 20px;
+}
+
+select {
+    padding: 12px 20px;
+    margin: 15px 0;
+    font-size: 16px;
     border-radius: 5px;
-    transition: background-color 0.3s, transform 0.3s;
+    border: 1px solid #ccc;
+    background-color: #ffffff;
+    transition: all 0.3s ease;
+    appearance: none; /* Remove default arrow */
+    cursor: pointer;
+    position: relative;
 }
 
-.class-list li a:hover {
-    background-color: #ff7f50;
-    color: white;
+select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    outline: none;
+}
+
+select::-ms-expand {
+    display: none; /* Remove default arrow in IE */
+}
+
+select::after {
+    content: '▼';
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: #333;
+    pointer-events: none;
+}
+
+.animated-button {
+    padding: 12px 24px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.animated-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.animated-button:hover:not(:disabled) {
+    background-color: #218838;
     transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Animation pour la section */
-@keyframes fadeInSection {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
 }
 
 /* Footer */
@@ -135,86 +140,10 @@ header {
     to { text-shadow: 0 0 10px #ff7f50, 0 0 20px #ff7f50, 0 0 30px #ff7f50; }
 }
 
-/* Media Queries */
-@media (max-width: 768px) {
-    .main-nav ul {
-        flex-direction: column;
-    }
-
-    .main-nav ul li a {
-        font-size: 1em;
-        padding: 10px;
-    }
-
-    .class-list {
-        flex-direction: column;
-    }
-
-    .class-list li {
-        margin: 5px 0;
-    }
-
-    .section-level {
-        margin: 10px 0;
-        padding: 15px;
-    }
-}
-
-@media (max-width: 480px) {
-    header {
-        font-size: 1.2em;
-        padding: 15px;
-    }
-
-    .class-list li a {
-        font-size: 1em;
-        padding: 8px 16px;
-    }
 
     .footer p {
         font-size: 0.9em;
     }
-}
-nav ul li {
-    display: inline;
-    margin: 0 15px;
-}
-
-nav ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-nav ul li a:hover {
-    text-decoration: underline;
-}
-
-main {
-    padding: 20px;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.course-card {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    width: 300px;
-    text-align: center;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-.course-card.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
 .footer {
     background-color: #333;
     color: white;
@@ -230,143 +159,4 @@ main {
 .footer-visible {
     opacity: 1; /* Rendre le footer visible */
     transform: translateY(0); /* Annuler le déplacement */
-}
-**
-/* Réinitialisation des marges et paddings */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-
-
-/* Container du cours */
-.course-container {
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    max-width: 400px;
-    width: 90%;
-    animation: fadeIn 1s ease-in-out;
-}
-
-/* Titre du cours */
-.course-container h1 {
-    font-size: 1.8em;
-    color: #333;
-    margin-bottom: 15px;
-}
-
-/* Description du cours */
-.course-container p {
-    font-size: 1em;
-    color: #555;
-    margin-bottom: 30px;
-    line-height: 1.6;
-}
-
-/* Bouton pour accéder au cours */
-.course-btn {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 15px 20px;
-    border-radius: 8px;
-    font-size: 1em;
-    cursor: pointer;
-    transition: all 0.4s ease;
-}
-
-/* Effets sur le bouton */
-.course-btn:hover {
-    background-color: #0056b3;
-    transform: translateY(-5px) scale(1.05);
-    box-shadow: 0px 15px 20px rgba(0, 91, 187, 0.3);
-}
-
-.course-btn:active {
-    transform: translateY(-2px) scale(1.02);
-    box-shadow: 0px 10px 15px rgba(0, 91, 187, 0.2);
-}
-
-/* Animation de l'apparition du container */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Media Queries pour les petits écrans */
-@media (max-width: 768px) {
-    .course-container h1 {
-        font-size: 1.5em;
-    }
-
-    .course-container p {
-        font-size: 0.9em;
-    }
-
-    .course-btn {
-        padding: 12px 18px;
-        font-size: 0.9em;
-    }
-}
-
-.d-flex{
-    display: flex;
-}
-.center-content{
-    height: 100vh; /* Prendre toute la hauteur, sans ça, ça ne se centre pas au mileu de l'écran */
-    justify-content: center; /* Centrer Horizontalement  */
-    align-items: center;  /* Centrer verticalement */
-}
-
-.subject-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    
-    width: 100%;
-    max-width: 1000px;
-    background-color : darkgrey;
-    height: 100vh; /* Prendre toute la hauteur, sans ça, ça ne se centre pas au mileu de l'écran */
-    justify-content: center; /* Centrer Horizontalement  */
-    align-items: center;  /* Centrer verticalement */
-}
-
-.subject-card {
-    background: linear-gradient(135deg, #6a11cb, #2575fc);
-    color: white;
-    padding: 20px;
-    border-radius: 12px;
-    text-align: center;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
-}
-
-.subject-card:hover {
-    transform: scale(1.08);
-    background: linear-gradient(135deg, #2575fc, #6a11cb);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-}
-
-/* Adaptation pour les écrans moyens (tablettes) */
-@media (max-width: 768px) {
-    .subject-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-/* Adaptation pour les petits écrans (smartphones) */
-@media (max-width: 480px) {
-    .subject-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .subject-card {
-        padding: 15px;
-    }
 }
