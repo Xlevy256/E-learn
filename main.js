@@ -81,3 +81,26 @@ function redirectToCourse(subject) {
     // Rediriger vers la page spécifique du cours
     window.location.href = subject + '.html';
 }
+document.addEventListener("DOMContentLoaded", function() {
+    const footer = document.querySelector('footer');
+    const mainContent = document.querySelector('.main-content');
+
+    function checkFooterPosition() {
+        const contentHeight = mainContent.getBoundingClientRect().height;
+        const windowHeight = window.innerHeight;
+
+        if (contentHeight < windowHeight) {
+            footer.classList.add('footer-visible');
+            mainContent.style.paddingBottom = `${footer.getBoundingClientRect().height}px`;
+        } else {
+            footer.classList.remove('footer-visible');
+            mainContent.style.paddingBottom = '0';
+        }
+    }
+
+    window.addEventListener('resize', checkFooterPosition);
+    window.addEventListener('load', checkFooterPosition);
+
+    // Vérifier la position au chargement de la page
+    checkFooterPosition();
+});

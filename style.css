@@ -215,14 +215,21 @@ main {
     transform: translateY(0);
 }
 
-footer {
+.footer {
     background-color: #333;
-    color: #fff;
+    color: white;
     text-align: center;
     padding: 10px 0;
-    position: fixed;
-    bottom: 0;
     width: 100%;
+    position: relative;
+    opacity: 0; /* Initialement caché */
+    transition: all 0.5s ease; /* Animation de la visibilité */
+}
+
+/* Classe pour faire apparaître le footer */
+.footer-visible {
+    opacity: 1; /* Rendre le footer visible */
+    transform: translateY(0); /* Annuler le déplacement */
 }
 **
 /* Réinitialisation des marges et paddings */
