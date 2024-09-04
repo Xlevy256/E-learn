@@ -1,51 +1,44 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Fonction pour mettre à jour la sélection des classes et des cours
+    function updateSelections() {
+        const level = document.getElementById('levelSelect').value;
+        const classSelectionContainer = document.getElementById('classSelectionContainer');
+        const courseSelectionContainer = document.getElementById('courseSelectionContainer');
+        const accessCourseBtn = document.getElementById('accessCourseBtn');
 
-    // Gestion du changement de niveau
-    document.getElementById('levelSelect').addEventListener('change', function() {
-        var selectedLevel = this.value;
-        var classSelectionContainer = document.getElementById('classSelectionContainer');
-        var courseSelectionContainer = document.getElementById('courseSelectionContainer');
-        var accessCourseBtn = document.getElementById('accessCourseBtn');
-        
-        // Réinitialiser les sélections de classes et de cours
         classSelectionContainer.innerHTML = '';
         courseSelectionContainer.innerHTML = '';
         accessCourseBtn.disabled = true;
 
-        var classes = [];
-        var courses = ["Anglais", "Français", "Mathématiques", "Physique-Chimie", "Histoire-Géographie", "SVT"];
+        let classes = [];
+        let courses = ["Anglais", "Français", "Mathématiques", "Physique-Chimie", "Histoire-Géographie", "SVT"];
 
-        // Définir les classes en fonction du niveau sélectionné
-        if (selectedLevel === 'secondary') {
+        if (level === 'secondary') {
             classes = ["Sixième", "Cinquième", "Quatrième", "Troisième"];
-        } else if (selectedLevel === 'tertiary') {
+        } else if (level === 'tertiary') {
             classes = ["Seconde", "Première", "Terminale"];
-        } else if (selectedLevel === 'higher') {
+        } else if (level === 'higher') {
             classes = ["Facultés des Sciences"];
         }
 
-        // Ajouter les options de classe
-        var classSelect = document.createElement('select');
+        const classSelect = document.createElement('select');
         classSelect.id = 'classSelect';
-        classSelect.innerHTML = `<option value="" disabled selected>Choisissez une classe</option>`;
-        classes.forEach(function(cl) {
+        classSelect.innerHTML = '<option value="" disabled selected>Choisissez une classe</option>';
+        classes.forEach(cl => {
             classSelect.innerHTML += `<option value="${cl.toLowerCase().replace(/\s+/g, '')}">${cl}</option>`;
         });
 
-        // Gestion du changement de classe
         classSelect.addEventListener('change', function() {
+            const selectedClass = this.value;
             courseSelectionContainer.innerHTML = '';
-            var selectedClass = this.value;
 
-            // Ajouter les options de cours
-            var courseSelect = document.createElement('select');
+            const courseSelect = document.createElement('select');
             courseSelect.id = 'courseSelect';
-            courseSelect.innerHTML = `<option value="" disabled selected>Choisissez un cours</option>`;
-            courses.forEach(function(course) {
+            courseSelect.innerHTML = '<option value="" disabled selected>Choisissez un cours</option>';
+            courses.forEach(course => {
                 courseSelect.innerHTML += `<option value="${course.toLowerCase().replace(/\s+/g, '')}">${course}</option>`;
             });
 
-            // Activer le bouton d'accès au cours
             courseSelect.addEventListener('change', function() {
                 accessCourseBtn.disabled = false;
             });
@@ -54,33 +47,29 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         classSelectionContainer.appendChild(classSelect);
-    });
+    }
 
-    // Gestion du bouton d'accès au cours
+    document.getElementById('levelSelect').addEventListener('change', updateSelections);
+
     document.getElementById('accessCourseBtn').addEventListener('click', function() {
-        var selectedClass = document.getElementById('classSelect').value;
-        var selectedCourse = document.getElementById('courseSelect').value;
-        var url = `documents_${selectedClass}_${selectedCourse}.html`;
+        const selectedClass = document.getElementById('classSelect').value;
+        const selectedCourse = document.getElementById('courseSelect').value;
+        const url = `documents_${selectedClass}_${selectedCourse}.html`;
 
-        // Déboguer les valeurs capturées et l'URL
         console.log('Classe sélectionnée:', selectedClass);
         console.log('Cours sélectionné:', selectedCourse);
         console.log('URL générée:', url);
 
-        // Ajouter un effet de fade-out
         document.querySelector('.container').style.animation = 'fadeOut 0.5s forwards';
 
-        setTimeout(function() {
-            // Redirection vers l'URL générée
+        setTimeout(() => {
             window.location.href = url;
         }, 500);
     });
 
-    // Gestion de la position du pied de page
-    const footer = document.querySelector('footer');
-    const mainContent = document.querySelector('.main-content');
-
-    function checkFooterPosition() {
+    function adjustFooterPosition() {
+        const footer = document.querySelector('footer');
+        const mainContent = document.querySelector('.main-content');
         const contentHeight = mainContent.getBoundingClientRect().height;
         const windowHeight = window.innerHeight;
 
@@ -93,11 +82,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    window.addEventListener('resize', checkFooterPosition);
-    window.addEventListener('load', checkFooterPosition);
-
-    // Vérifier la position du pied de page au chargement de la page
-    checkFooterPosition();
+    window.addEventListener('resize', adjustFooterPosition);
+    window.addEventListener('load', adjustFooterPosition);
 
     // Gestion de la modale pour le téléchargement
     const buttons = document.querySelectorAll('.btn-download');
@@ -110,7 +96,7 @@ document.addEventListener('DOMContentLoaded', function() {
     buttons.forEach(button => {
         button.addEventListener('click', function() {
             selectedFile = this.getAttribute('data-file');
-            const coverImageUrl = `cover_images/${selectedFile.split('/').pop().replace('.pdf', '.jpg')}`; // assuming you have cover images in this path
+            const coverImageUrl = `cover_images/${selectedFile.split('/').pop().replace('.pdf', '.jpg')}`;
             pdfCover.src = coverImageUrl;
             modal.style.display = 'block';
         });
@@ -130,10 +116,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    window.addEventListener('click', function(event) {
-        if (event.target == modal) {
+    window.addEventListener('click', event => {
+        if (event.target === modal) {
             modal.style.display = 'none';
         }
     });
-
 });
