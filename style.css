@@ -1,28 +1,80 @@
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+/* Réinitialisation des marges et des paddings */
+* {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
+/* Styles généraux du corps */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to right, #8e2de2, #4a00e0);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+    margin: 0;
+    color: #fff;
+}
+
+/* Styles pour le conteneur principal */
 .container {
-    background-color: #ffffff;
+    flex: 1;
     padding: 30px;
+    background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
     text-align: center;
     animation: fadeIn 1s ease-in-out;
 }
 
+/* Styles pour l'en-tête */
+header {
+    background-color: #4a00e0;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
 h1 {
+    font-size: 2.5em;
+    font-weight: bold;
     margin-bottom: 20px;
-    font-size: 28px;
     color: #333;
 }
 
+/* Grille pour la présentation des éléments */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+/* Styles pour les éléments de la grille */
+.item {
+    background-color: #ffffff33; /* Semi-transparent white */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+}
+
+h2 {
+    color: #fff;
+}
+
+p {
+    color: #ddd;
+    margin-bottom: 15px;
+}
+
+/* Styles pour les sélecteurs */
 select {
     padding: 12px 20px;
     margin: 15px 0;
@@ -57,16 +109,22 @@ select::after {
     pointer-events: none;
 }
 
-.animated-button {
+/* Styles pour les boutons animés */
+.animated-button,
+.btn-download {
     padding: 12px 24px;
-    background-color: #28a745;
-    color: #fff;
-    border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
     margin-top: 20px;
+    color: #fff;
+    text-decoration: none;
     transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.animated-button {
+    background-color: #28a745;
+    border: none;
 }
 
 .animated-button:disabled {
@@ -80,6 +138,60 @@ select::after {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+.btn-download {
+    background-color: #00c6ff;
+}
+
+.btn-download:hover {
+    background-color: #0073e6;
+    transform: scale(1.05);
+}
+
+/* Styles pour la modale */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    animation: fadeInModal 0.5s ease-in-out;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.modal-content img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+}
+
+/* Animations */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -91,13 +203,22 @@ select::after {
     }
 }
 
-@keyframes fadeOut {
+@keyframes fadeInModal {
     from {
-        opacity: 1;
-        transform: translateY(0);
+        opacity: 0;
     }
     to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
         opacity: 0;
-        transform: translateY(-20px);
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
     }
 }
