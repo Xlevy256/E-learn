@@ -77,3 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
         courseBtn.style.boxShadow = 'none';
     });
 });
+function redirectToCourse(subject) {
+    // Rediriger vers la page spécifique du cours
+    window.location.href = subject + '.html';
+}
