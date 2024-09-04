@@ -69,3 +69,27 @@ document.getElementById('accessCourseBtn').addEventListener('click', function() 
         window.location.href = url;
     }, 500);
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+    const footer = document.querySelector('footer');
+    const mainContent = document.querySelector('.main-content');
+
+    function checkFooterPosition() {
+        const contentHeight = mainContent.getBoundingClientRect().height;
+        const windowHeight = window.innerHeight;
+
+        if (contentHeight < windowHeight) {
+            footer.classList.add('footer-visible');
+            mainContent.style.paddingBottom = `${footer.getBoundingClientRect().height}px`;
+        } else {
+            footer.classList.remove('footer-visible');
+            mainContent.style.paddingBottom = '0';
+        }
+    }
+
+    window.addEventListener('resize', checkFooterPosition);
+    window.addEventListener('load', checkFooterPosition);
+
+    // Vérifier la position au chargement de la page
+    checkFooterPosition();
+});
