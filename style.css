@@ -316,18 +316,6 @@ footer {
     align-items: center;  /* Centrer verticalement */
 }
 
-
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f0f2f5;
-    margin: 0;
-    padding: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-}
-
 .subject-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
