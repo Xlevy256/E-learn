@@ -320,8 +320,13 @@ footer {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
+    
     width: 100%;
     max-width: 1000px;
+    background-color : darkgrey;
+    height: 100vh; /* Prendre toute la hauteur, sans ça, ça ne se centre pas au mileu de l'écran */
+    justify-content: center; /* Centrer Horizontalement  */
+    align-items: center;  /* Centrer verticalement */
 }
 
 .subject-card {
