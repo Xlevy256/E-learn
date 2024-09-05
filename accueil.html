@@ -3,39 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestion des Cours</title>
+    <title>Site d'Apprentissage</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Accès aux Cours par Niveau d'Études</h1>
-        <div class="level-selection">
-            <select id="levelSelect">
-                <option value="" disabled selected>Choisissez un niveau</option>
-                <option value="secondary">Niveau Secondaire</option>
-                <option value="tertiary">Niveau Tertiaire</option>
-                <option value="higher">Niveau Supérieur</option>
-            </select>
-        </div>
+    <header>
+        <h1>Bienvenue sur le Site d'Apprentissage</h1>
+    </header>
 
-        <div class="class-selection" id="classSelectionContainer">
-            <!-- Les classes seront dynamiquement insérées ici -->
-        </div>
+    <main>
+        <!-- Niveau Secondaire -->
+        <section class="niveau" id="secondaire">
+            <h2>Niveau Secondaire</h2>
+            <div class="classes">
+                <div class="classe">
+                    <h3>Sixième</h3>
+                    <ul>
+                        <li><a href="pages/sixieme/francais.html">Français</a></li>
+                        <li><a href="pages/sixieme/mathematiques.html">Mathématiques</a></li>
+                        <li><a href="pages/sixieme/physique.html">Physique-Chimie</a></li>
+                        <li><a href="pages/sixieme/histoire.html">Histoire-Géographie</a></li>
+                        <li><a href="pages/sixieme/anglais.html">Anglais</a></li>
+                        <li><a href="pages/sixieme/svt.html">SVT</a></li>
+                    </ul>
+                </div>
+                <!-- Autres classes à ajouter ici -->
+            </div>
+        </section>
 
-        <div class="course-selection" id="courseSelectionContainer">
-            <!-- Les cours seront dynamiquement insérés ici -->
-        </div>
+        <!-- Niveau Tertiaire -->
+        <section class="niveau" id="tertiaire">
+            <h2>Niveau Tertiaire</h2>
+            <div class="classes">
+                <div class="classe">
+                    <h3>Seconde</h3>
+                    <ul>
+                        <li><a href="pages/seconde/francais.html">Français</a></li>
+                        <li><a href="pages/seconde/mathematiques.html">Mathématiques</a></li>
+                        <li><a href="pages/seconde/physique.html">Physique-Chimie</a></li>
+                        <!-- Autres matières -->
+                    </ul>
+                </div>
+                <!-- Autres classes à ajouter ici -->
+            </div>
+        </section>
 
-        <button id="accessCourseBtn" class="animated-button" disabled>Accéder au cours</button>
-    </div>
+        <!-- Niveau Supérieur -->
+        <section class="niveau" id="superieur">
+            <h2>Niveau Supérieur</h2>
+            <div class="classes">
+                <div class="classe">
+                    <h3>Faculté des Sciences</h3>
+                    <ul>
+                        <li><a href="pages/sciences/mathematiques.html">Mathématiques</a></li>
+                        <li><a href="pages/sciences/physique.html">Physique</a></li>
+                        <li><a href="pages/sciences/chimie.html">Chimie</a></li>
+                    </ul>
+                </div>
+                <!-- Faculté des langues -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Xlevy - Tous droits réservés</p>
+    </footer>
 
     <script src="main.js"></script>
 </body>
-<!--
-<footer class="footer">
-        <div class="footer-content">
-            <p>&copy; <span id="year"></span> Xlevy |Tous droits réservés.</p>
-        </div>
-    </footer>
-    -->
 </html>
