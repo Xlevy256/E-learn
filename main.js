@@ -1,124 +1,65 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Fonction pour mettre à jour la sélection des classes et des cours
-    function updateSelections() {
-        const level = document.getElementById('levelSelect').value;
-        const classSelectionContainer = document.getElementById('classSelectionContainer');
-        const courseSelectionContainer = document.getElementById('courseSelectionContainer');
-        const accessCourseBtn = document.getElementById('accessCourseBtn');
+document.getElementById('levelSelect').addEventListener('change', function() {
+    var selectedLevel = this.value;
+    var classSelectionContainer = document.getElementById('classSelectionContainer');
+    var courseSelectionContainer = document.getElementById('courseSelectionContainer');
+    var accessCourseBtn = document.getElementById('accessCourseBtn');
+    
+    // Réinitialiser les sélections de classes et de cours
+    classSelectionContainer.innerHTML = '';
+    courseSelectionContainer.innerHTML = '';
+    accessCourseBtn.disabled = true;
 
-        classSelectionContainer.innerHTML = '';
+    var classes = [];
+    var courses = ["Anglais", "Français", "Mathématiques", "Physique-Chimie", "Histoire-Géographie", "SVT"];
+
+    // Définir les classes en fonction du niveau sélectionné
+    if (selectedLevel === 'secondary') {
+        classes = ["Sixième", "Cinquième", "Quatrième", "Troisième"];
+    } else if (selectedLevel === 'tertiary') {
+        classes = ["Seconde", "Première", "Terminale"];
+    } else if (selectedLevel === 'higher') {
+        classes = ["Facultés des Sciences"];
+    }
+
+    // Ajouter les options de classe
+    var classSelect = document.createElement('select');
+    classSelect.id = 'classSelect';
+    classSelect.innerHTML = `<option value="" disabled selected>Choisissez une classe</option>`;
+    classes.forEach(function(cl) {
+        classSelect.innerHTML += `<option value="${cl.toLowerCase().replace(/\s+/g, '')}">${cl}</option>`;
+    });
+
+    classSelect.addEventListener('change', function() {
         courseSelectionContainer.innerHTML = '';
-        accessCourseBtn.disabled = true;
+        var selectedClass = this.value;
 
-        let classes = [];
-        let courses = ["Anglais", "Français", "Mathématiques", "Physique-Chimie", "Histoire-Géographie", "SVT"];
-
-        if (level === 'secondary') {
-            classes = ["Sixième", "Cinquième", "Quatrième", "Troisième"];
-        } else if (level === 'tertiary') {
-            classes = ["Seconde", "Première", "Terminale"];
-        } else if (level === 'higher') {
-            classes = ["Facultés des Sciences"];
-        }
-
-        const classSelect = document.createElement('select');
-        classSelect.id = 'classSelect';
-        classSelect.innerHTML = '<option value="" disabled selected>Choisissez une classe</option>';
-        classes.forEach(cl => {
-            classSelect.innerHTML += `<option value="${cl.toLowerCase().replace(/\s+/g, '')}">${cl}</option>`;
+        // Ajouter les options de cours
+        var courseSelect = document.createElement('select');
+        courseSelect.id = 'courseSelect';
+        courseSelect.innerHTML = `<option value="" disabled selected>Choisissez un cours</option>`;
+        courses.forEach(function(course) {
+            courseSelect.innerHTML += `<option value="${course.toLowerCase().replace(/\s+/g, '')}">${course}</option>`;
         });
 
-        classSelect.addEventListener('change', function() {
-            const selectedClass = this.value;
-            courseSelectionContainer.innerHTML = '';
-
-            const courseSelect = document.createElement('select');
-            courseSelect.id = 'courseSelect';
-            courseSelect.innerHTML = '<option value="" disabled selected>Choisissez un cours</option>';
-            courses.forEach(course => {
-                courseSelect.innerHTML += `<option value="${course.toLowerCase().replace(/\s+/g, '')}">${course}</option>`;
-            });
-
-            courseSelect.addEventListener('change', function() {
-                accessCourseBtn.disabled = false;
-            });
-
-            courseSelectionContainer.appendChild(courseSelect);
+        courseSelect.addEventListener('change', function() {
+            accessCourseBtn.disabled = false;
         });
 
-        classSelectionContainer.appendChild(classSelect);
-    }
-
-    document.getElementById('levelSelect').addEventListener('change', updateSelections);
-
-    document.getElementById('accessCourseBtn').addEventListener('click', function() {
-        const selectedClass = document.getElementById('classSelect').value;
-        const selectedCourse = document.getElementById('courseSelect').value;
-        const url = `documents_${selectedClass}_${selectedCourse}.html`;
-
-        console.log('Classe sélectionnée:', selectedClass);
-        console.log('Cours sélectionné:', selectedCourse);
-        console.log('URL générée:', url);
-
-        document.querySelector('.container').style.animation = 'fadeOut 0.5s forwards';
-
-        setTimeout(() => {
-            window.location.href = url;
-        }, 500);
+        courseSelectionContainer.appendChild(courseSelect);
     });
 
-    function adjustFooterPosition() {
-        const footer = document.querySelector('footer');
-        const mainContent = document.querySelector('.main-content');
-        const contentHeight = mainContent.getBoundingClientRect().height;
-        const windowHeight = window.innerHeight;
+    classSelectionContainer.appendChild(classSelect);
+});
 
-        if (contentHeight < windowHeight) {
-            footer.classList.add('footer-visible');
-            mainContent.style.paddingBottom = `${footer.getBoundingClientRect().height}px`;
-        } else {
-            footer.classList.remove('footer-visible');
-            mainContent.style.paddingBottom = '0';
-        }
-    }
+document.getElementById('accessCourseBtn').addEventListener('click', function() {
+    var selectedClass = document.getElementById('classSelect').value;
+    var selectedCourse = document.getElementById('courseSelect').value;
+    var url = `documents_${selectedClass}_${selectedCourse}.html`;
 
-    window.addEventListener('resize', adjustFooterPosition);
-    window.addEventListener('load', adjustFooterPosition);
+    // Ajouter un effet de fade-out
+    document.querySelector('.container').style.animation = 'fadeOut 0.5s forwards';
 
-    // Gestion de la modale pour le téléchargement
-    const buttons = document.querySelectorAll('.btn-download');
-    const modal = document.getElementById('modal');
-    const closeModal = document.querySelector('.close');
-    const pdfCover = document.getElementById('pdf-cover');
-    const confirmDownload = document.getElementById('confirm-download');
-    let selectedFile;
-
-    buttons.forEach(button => {
-        button.addEventListener('click', function() {
-            selectedFile = this.getAttribute('data-file');
-            const coverImageUrl = `cover_images/${selectedFile.split('/').pop().replace('.pdf', '.jpg')}`;
-            pdfCover.src = coverImageUrl;
-            modal.style.display = 'block';
-        });
-    });
-
-    closeModal.addEventListener('click', () => {
-        modal.style.display = 'none';
-    });
-
-    confirmDownload.addEventListener('click', () => {
-        if (selectedFile) {
-            const a = document.createElement('a');
-            a.href = selectedFile;
-            a.download = selectedFile.split('/').pop();
-            a.click();
-            modal.style.display = 'none';
-        }
-    });
-
-    window.addEventListener('click', event => {
-        if (event.target === modal) {
-            modal.style.display = 'none';
-        }
-    });
+    setTimeout(function() {
+        window.location.href = url;
+    }, 500);
 });
