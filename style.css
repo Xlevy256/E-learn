@@ -1,62 +1,103 @@
 /* Style général */
-body {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(to right, #ece9e6, #ffffff);
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f7fa;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* Header */
 header {
     text-align: center;
-    padding: 20px;
-    background-color: #4CAF50;
+    padding: 40px;
+    background-color: #2d89e5;
     color: white;
-    font-size: 24px;
+    font-size: 32px;
+    font-weight: 600;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
 }
 
+/* Conteneur principal */
 main {
     padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
+/* Sections des niveaux */
 .niveau {
-    margin-bottom: 40px;
+    margin-bottom: 60px;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
+/* Apparition des sections au scroll */
+.niveau-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Grille des classes */
 .classes {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
 }
 
 .classe {
-    background-color: #f9f9f9;
-    padding: 15px;
+    background-color: #e0efff;
+    padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 .classe:hover {
     transform: scale(1.05);
-    background-color: #d3ffd3;
+    background-color: #b0d4f1;
 }
 
+/* Liste des matières */
 ul {
     list-style-type: none;
     padding: 0;
 }
 
 li {
-    padding: 5px 0;
+    padding: 10px 0;
     border-bottom: 1px solid #ddd;
 }
 
-/* Boutons */
+li a {
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+li a:hover {
+    color: #2d89e5;
+}
+
+/* Bouton de téléchargement */
 .btn-telechargement {
     display: inline-block;
-    background-color: #4CAF50;
+    background-color: #2d89e5;
     color: white;
     padding: 10px 20px;
+    margin-top: 20px;
     text-align: center;
     text-decoration: none;
     border-radius: 5px;
@@ -64,7 +105,20 @@ li {
 }
 
 .btn-telechargement:hover {
-    background-color: #45a049;
+    background-color: #1a73c5;
+}
+
+/* Pied de page */
+footer {
+    text-align: center;
+    padding: 30px;
+    background-color: #333;
+    color: white;
+    font-size: 14px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
 }
 
 /* Listes de documents */
@@ -80,32 +134,44 @@ li {
 .documents li a {
     color: #333;
     text-decoration: none;
-    border-bottom: 1px solid #4CAF50;
+    border-bottom: 1px solid #2d89e5;
     padding-bottom: 5px;
     transition: color 0.3s ease;
 }
 
 .documents li a:hover {
-    color: #4CAF50;
+    color: #2d89e5;
 }
 
-footer {
-    text-align: center;
-    padding: 20px;
-    background-color: #333;
-    color: white;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-}
-/* Animations pour les sections */
-.niveau {
-    opacity: 0;
-    transform: translateY(50px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+/* Responsivité */
+@media (max-width: 768px) {
+    header {
+        font-size: 24px;
+        padding: 20px;
+    }
+
+    .classes {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    .btn-telechargement {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
 }
 
-.niveau-visible {
-    opacity: 1;
-    transform: translateY(0);
+@media (max-width: 480px) {
+    header {
+        font-size: 18px;
+        padding: 15px;
+    }
+
+    .classe {
+        padding: 15px;
+    }
+
+    .btn-telechargement {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
 }
